@@ -1,0 +1,229 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/all.min.css"/>
+    
+    <style>
+        .bpanel{
+            background-color:rgb(219, 214, 214);
+            height: 450;
+            width: 800;
+            margin-top: 10%;
+            margin-left: 22%;
+            border-radius: 10px;
+            
+        }
+        .alltasks{
+            height: 250;
+            width: 725;
+            background-color:white;
+            overflow-y: scroll;
+             scrollbar-width: thin;
+            position: relative;
+            left:50;
+            top: 15px;
+            border-radius: 10px;
+            
+        }
+        .task{
+            height: 50;
+            width: 695;
+            background-color:rgb(255, 165, 162);
+            position: relative;
+            border-radius: 10px;
+            font-size: 20px;
+            line-height: 50px;
+            border: 2px black solid;
+            display: flex;
+            flex-direction: row;
+             
+        }
+      #icon{
+        
+        position: relative;
+        margin-top: 15px;
+        margin-left: 10px;
+        margin-right: 5px;
+
+      }
+      .state{
+        height: 10;
+        width: 5rem;
+        position: relative;
+        left: 100px;
+        flex: auto;
+        color: green;
+        font-size: 30px;
+        
+      }
+      .taskindex{
+        height: 10;
+        width: 200;
+        position: relative;
+        left: 5;
+        flex: auto;
+
+      }
+      .input{
+        width: 500px;
+          height: 50;
+          left: 50;
+          position: relative;
+        display: flex;
+            flex-direction: row;
+          
+      }
+      .taskinput{
+          width: 400px;
+          height: 50;
+          position: relative;
+          left:50;
+        top: 50px;
+            flex: auto;
+            font-size: 25;
+            border-radius: 10px;
+
+      }
+      .add{
+        width: 60px;
+        height: 50;
+        position: relative;
+        left:60;
+        top: 50px;
+        flex: auto;
+        font-size: 20;
+        background-color:rgb(21, 123, 240);
+        border: 2px black solid;
+        border-radius: 10px;
+
+      }
+      .label{
+        width: 20px;
+        height: 50;
+          position: relative;
+          font-size: 40;
+          right: 10;
+        top: 50px;
+        flex: auto;
+      }
+
+    </style>
+</head>
+<body>
+    <div class="bpanel">
+        <div class="alltasks">
+            <!-- <div   class="task">
+                                            <div  class="taskindex">task1</div>
+                                             <div class="state"></div>
+                                            <div onclick="done(event)"> <i  class="fas fa-check-square" id="icon" ></i> </div>
+                                             <i class="fas fa-times-circle"  id="icon"></i>
+                     
+            </div> -->
+          
+
+        </div>
+        <div class="input">
+            <div class="label">Task</div>
+        <input type="text" class="taskinput"/>
+        <input type="button" onclick="add()"class="add" value="ADD"/>
+    </div>
+     </div>
+     
+    
+    <script >
+      init();
+
+       var arr;
+      /* var i=0;
+       localStorage.numberoftasks=i*/
+    // localStorage.tasks=[]
+        var count=0
+        function init (){
+          var tryed=localStorage.tasks
+         // var drr= JSON.parse('{"taskname":"qwe"}');
+         
+          //console.log(drr)
+          arr=tryed.split(',')
+          
+          
+         for(var j=0;j<(arr.length)-1;j++){
+           var task= arr[j]
+           
+           var newtask = document.createElement("div");
+           var tasks=document.getElementsByClassName("alltasks")[0];
+           newtask.insertAdjacentHTML('afterbegin', '<div class="task"><div  class="taskindex">'+task+'</div> <i  onclick="done(event)" class="fas fa-check-square '+count+'"      id="icon" ></i> <i   onclick="remove(event)" class="fas fa-times-circle"  id="icon"></i></div>')
+           tasks.appendChild(newtask)
+          }
+          
+
+        }
+        
+      
+     function remove(e){
+       
+       var taskremoved=(e.target.parentNode).querySelectorAll(".taskindex")[0]
+
+       //arr.splice(arr.indexOf(taskremoved.innerHTML),1)
+       e.target.parentNode.style.display="none"
+       
+       for(var j=0;j<(arr.length);j++){
+         if(taskremoved.innerHTML.toString()==arr[j].toString())arr.splice(j,1)
+         //localStorage.tasks=localStorage.tasks+arr[j]
+
+       }
+       console.log(arr)
+       localStorage.tasks=arr.toString()
+
+       
+      
+     }
+   
+     
+    
+     function add(){
+           var taskinput=document.getElementsByClassName("taskinput")[0].value
+
+      
+     
+      
+        if(taskinput!="")
+        {           
+              
+            
+                    arr.push(taskinput+",");
+                  
+                  var newtask = document.createElement("div");
+                    
+                
+                  var tasks=document.getElementsByClassName("alltasks")[0];
+                
+                  
+                  newtask.insertAdjacentHTML('afterbegin', '<div class="task"><div  class="taskindex">'+taskinput+'</div> <i  onclick="done(event)" class="fas fa-check-square '+count+'"      id="icon" ></i> <i   onclick="remove(event)" class="fas fa-times-circle"  id="icon"></i></div>')
+                  
+                  tasks.appendChild(newtask)
+                  document.getElementsByClassName("taskinput")[0].value=""
+                  count++
+                  //localStorage.numberoftasks++
+                  console.log(arr)
+                  localStorage.tasks=localStorage.tasks+taskinput+","
+        }
+        
+        
+        
+     }
+    //console.log(arr)
+    
+    //localStorage.removeItem("tasks")
+
+
+    </script>
+    
+
+
+     
+
+</body>
+</html>

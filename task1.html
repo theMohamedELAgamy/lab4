@@ -1,0 +1,135 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pbackg{
+            background-color:rgb(79, 221, 127);
+            width: 800px;
+            height: 500px;
+            margin-top: 200px;
+            margin-left: 25%;
+            border-radius: 10px;
+
+        }
+        .sbackg{
+            background-color:white;
+            width: 300;
+            height: 250px;
+            position:relative ;
+            left:250px;
+            top:100px;
+            border-radius: 10px;
+            display: block;
+            
+        }
+        .username
+        {
+            width: 250;
+            height:40;
+            position: relative;
+            left:25;
+            top:40;
+            border-radius: 10px;
+
+        }
+        .pass{
+            width: 250;
+            height:40;
+            position: relative;
+            left:25;
+            top:40;
+            margin-top: 15;
+            border-radius: 10px;
+            
+        }
+        .login{
+            width: 250;
+            height:40;
+            position: relative;
+            left:25;
+            top:40;
+            margin-top: 15;
+            background-color:rgb(7, 252, 48);
+            border-radius: 10px;
+            text-align: center;
+            
+            
+            
+
+
+        }
+        .fstate{
+            width: 250;
+            height:40;
+            position: relative;
+            left:100;
+            top:100;
+            margin-top: 15;
+        }
+        .tstate{
+            width: 250;
+            height:40;
+            position: relative;
+            left:350;
+            top:250;
+            font-size: 30;
+            
+        }
+
+    </style>
+</head>
+<body>
+    <div class="pbackg">
+        <div class="sbackg">
+            <form  >
+                <input type="text" class="username"/>
+                <input type="password" class="pass"/>
+                <input type="button" onclick="validation();"   value="Login"  class="login"  />
+
+
+            </form>
+            <div class="fstate">
+                
+            </div>
+            
+
+        </div>
+        
+            <div class="tstate">
+                
+            </div>
+        
+
+    </div>
+        <script>
+            function validation(){
+                var username=document.getElementsByClassName("username")[0];
+                var pass=document.getElementsByClassName("pass")[0];
+                if(username.value =="admin" && pass.value=="123"){
+                    var sbackg=document.getElementsByClassName("sbackg")[0];
+                    var tstate=document.getElementsByClassName("tstate")[0];
+                    sbackg.style.display="none"
+                    tstate.innerHTML="welcome"
+                    
+
+
+                }
+                else{
+                    var fstate=document.getElementsByClassName("fstate")[0];
+                   
+                    fstate.innerHTML="not registired"
+
+
+                }
+
+            }
+
+
+
+
+        </script>
+</body>
+</html>
